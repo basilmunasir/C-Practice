@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main()
 {
-     int size,operation,insert_element,insert_location,delete_option,delete_element,delete_location,search_element,search_flag=0,sort_option,exit_flag=0;
+     int size,operation,insert_element,insert_location,delete_option,delete_element,delete_location,search_element,search_flag,sort_option,exit_flag=0;
      printf("Enter the total number of elements : ");
      scanf("%d",&size);
      int array[size];
@@ -12,8 +12,8 @@ int main()
     }
     while(1)
     {
-        printf("Which array operation would you like to perform?\n");
-        printf("1 :- Print all element \n2 :- Insert new element \n3 :- Delete existing element \n4 :- Search an element \n5 :- Sort the elements \n6 :- Complete the process \nEnter your choice : ");
+        printf("\nWhich array operation would you like to perform?\n");
+        printf("1 :- Print all elements \n2 :- Insert new element \n3 :- Delete existing element \n4 :- Search an element \n5 :- Sort the elements \n6 :- Complete the process \nEnter your choice : ");
         scanf("%d",&operation);
         switch (operation)
         {
@@ -23,7 +23,7 @@ int main()
                 {
                     printf("%d\t",array[i]);
                 }
-                printf("PRINT SUCCESSFUL.\n\n\n");
+                printf("\n\nPRINT SUCCESSFUL.\n\n\n");
             break;
 
         case 2:
@@ -41,17 +41,17 @@ int main()
                     array[i]=array[i-1];
                 }
                 array[insert_location]=insert_element;
-                printf("INSERTION SUCCESSFUL.\n\n\n");
+                printf("\nINSERTION SUCCESSFUL.\n\n\n");
             }
             else
             {
-                printf("INSERTION UNSUCCESSFUL.\n\n\n");
+                printf("\nINSERTION UNSUCCESSFUL.\n\n\n");
             }
         break;
             
         case 3:
             printf("\n\nDELETING EXISTING ELEMENT.\n\n");
-            printf("Which one do you prefer?\n1 :- Element wise \n2 :- Position wise \nChoose : ");
+            printf("Which one do you prefer?\n1 :- Element wise deletion\n2 :- Position wise deletion\nChoose : ");
             scanf("%d",&delete_option);
             if (delete_option==1)
             {
@@ -61,12 +61,14 @@ int main()
                 {
                     if (array[i]==delete_element)
                     {
-                        while(i<size)
+                        int temp=i;
+                        while(temp<size)
                         {
-                            array[i]=array[i+1];
+                            array[temp]=array[temp+1];
+                            temp++;
                         }
                         size--;
-                        printf("DELETION SUCCESSFUL.\n\n\n");
+                        printf("\nDELETION SUCCESSFUL.\n\n\n");
                     }
                 }
             }   
@@ -80,11 +82,11 @@ int main()
                     array[i]=array[i+1];
                 }
                 size--;
-                printf("DELETION SUCCESSFUL.\n\n\n");
+                printf("\nDELETION SUCCESSFUL.\n\n\n");
             }
             else
             {
-                printf("INVALID OPTION!!! \nDELETION UNSUCCESSFUL.\n\n\n");
+                printf("\nINVALID OPTION!!! \nDELETION UNSUCCESSFUL.\n\n\n");
             }
         break;
                 
@@ -92,6 +94,7 @@ int main()
             printf("\n\nSEARCH AN ELEMENT.\n");
             printf("Enter the element to search : ");
             scanf("%d",&search_element);
+            search_flag=0;
             for(int i=0;i<size;i++)
             {
                 if(array[i]==search_element)
@@ -102,14 +105,14 @@ int main()
             }
             if(search_flag==0)
             {
-                printf("SEARCH UNSUCCESSFUL. ELEMENT NOT FOUND.");
+                printf("\nSEARCH UNSUCCESSFUL. ELEMENT NOT FOUND.");
             }
             printf("\n\n\n");
         break;
 
         case 5:
             printf("\n\nSORT THE ELEMENTS.\n");
-            printf("Select the sorting order \n1 :- Ascending Order\n 2 :- Descending Order \nChoose : ");
+            printf("Select the sorting order \n1 :- Ascending Order\n2 :- Descending Order \nChoose : ");
             scanf("%d",&sort_option);
             if(sort_option==1)
             {
@@ -125,7 +128,7 @@ int main()
                         }
                     }
                 }
-                printf("SORT SUCCESSFUL.\n\n\n");
+                printf("\nSORT SUCCESSFUL.\n\n\n");
             }
             else if(sort_option==2)
             {
@@ -141,11 +144,11 @@ int main()
                         }
                     }
                 }
-                printf("SORT SUCCESSFUL.\n\n\n");
+                printf("\nSORT SUCCESSFUL.\n\n\n");
             }
             else
             {
-                printf("INVALID OPTION!!! \nSORT UNSUCCESSFUL.");
+                printf("\nINVALID OPTION!!! \nSORT UNSUCCESSFUL.\n\n\n");
             }
         break;
 
@@ -155,12 +158,12 @@ int main()
         break;
 
         default:
-            printf("INVALID OPTION!!!");
+            printf("\nINVALID OPTION!!!");
         break;
         }
         if(exit_flag==1)
         {
-            printf("Final Elements :- \n");
+            printf("\nFinal Elements :- \n");
              for(int i=0;i<size;i++)
                 {
                     printf("%d\t",array[i]);
